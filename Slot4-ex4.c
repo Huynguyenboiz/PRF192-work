@@ -22,6 +22,7 @@ int main() {
 			break;
 		case 2:
 			printf("That month has 28 or 29 days.");
+			break;
 		default: printf("Invalid month.");
 	}
 	return 0;
