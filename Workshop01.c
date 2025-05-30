@@ -3,8 +3,7 @@
 
 int main() {
 	int students, passed = 0, failed = 0;
-	float score, average;
-	float total = 0;
+	float score, average, total = 0;
 	do {
 		printf("Enter the number of students (>= 1): ");
 		scanf("%d", &students);
