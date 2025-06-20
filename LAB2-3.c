@@ -3,11 +3,10 @@
 
 void inputArray(int arr[], int *size);
 void displayArray(int arr[], int size);
+void sort(int arr[], int size);
 int searchValue(int arr[], int size, int target);
 void calculateStatistics(int arr[], int size);
 void reverseArray(int arr[], int size);
-
-void sort(int arr[], int size);
 
 int main() {
     int arr[MAX_SIZE], size = 0, target, index, choice;
@@ -85,7 +84,6 @@ void inputArray(int arr[], int *size) {
     		}
 		}	
 	} while (*size < 0 || *size > MAX_SIZE);
-    
 }
 
 void displayArray(int arr[], int size) {
