@@ -3,7 +3,6 @@
 
 void inputArray(int arr[], int *size);
 void displayArray(int arr[], int size);
-void sort(int arr[], int size);
 int searchValue(int arr[], int size, int target);
 void calculateStatistics(int arr[], int size);
 void reverseArray(int arr[], int size);
@@ -11,7 +10,7 @@ void reverseArray(int arr[], int size);
 int main() {
     int arr[MAX_SIZE], size = 0, target, index, choice;
     do {
-        printf("\n---Menu---\n");
+        printf("\n--- Menu ---\n");
         printf("1. Input data\n");
         printf("2. Display array\n");
         printf("3. Search for a number\n");
@@ -26,6 +25,7 @@ int main() {
                 break;
             case 2:
                 if (size > 0) {
+                	printf("Array elements:\n");
                     displayArray(arr, size);
                 } else {
                     printf("No data to display. Please input data first.\n");
@@ -35,7 +35,6 @@ int main() {
                 if (size > 0) {
                     printf("Enter the number you want to search for: ");
                     scanf("%d", &target);
-                    sort(arr, size);
                     index = searchValue(arr, size, target);
                     if (index == -1) {
                         printf("The number %d is not found in the array.\n", target);
@@ -55,13 +54,15 @@ int main() {
                 break;
             case 5:
                 if (size > 0) {
+                	printf("Reverse Array: ");
                     reverseArray(arr, size);
+                    displayArray(arr, size);
                 } else {
                     printf("No data to reverse. Please input data first.\n");
                 }
                 break;
             case 6:
-                printf("Exiting the program.\n");
+                printf("Exiting the program...\n");
                 break;
             default:
                 printf("Invalid choice. Please try again.\n");
@@ -74,50 +75,30 @@ void inputArray(int arr[], int *size) {
     do {
     	printf("Enter the size of the array (max 100): ");
     	scanf("%d", size);
-    	if (*size < 0 || *size > MAX_SIZE) {
+    	if (*size < 1 || *size > MAX_SIZE) {
    			printf("Invalid size. Please enter again.\n");
-		} else {
-			printf("Enter %d elements: \n", *size);
-   			for (int i = 0; i < *size; i++) {
-    			printf("Number %d: ", i);
-       			scanf("%d", &arr[i]);
-    		}
-		}	
-	} while (*size < 0 || *size > MAX_SIZE);
+		}
+	} while (*size < 1 || *size > MAX_SIZE);
+	printf("Enter %d elements: \n", *size);
+   	for (int i = 0; i < *size; i++) {
+    	printf("Number %d: ", i);
+       	scanf("%d", &arr[i]);
+	}
 }
 
 void displayArray(int arr[], int size) {
-    printf("Array elements:\n");
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
 }
 
-void sort(int arr[], int size) {
-    int i, j, temp;
-    for (i = 0; i < size - 1; i++) {
-        for (j = 0; j < size - i - 1; j++) {
-            if (arr[j] > arr[j+1]) {
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
-    }
-}
-
 int searchValue(int arr[], int size, int target) {
-    int left = 0, right = size - 1;
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-        if (arr[mid] == target)
-            return mid;
-        if (arr[mid] < target)
-            left = mid + 1;
-        else
-            right = mid - 1;
-    }
+    for (int i = 0; i < size; i++) {
+    	if (arr[i] == target) {
+    		return i;
+		}
+	}
     return -1;
 }
 
@@ -147,5 +128,4 @@ void reverseArray(int arr[], int size) {
         arr[i] = arr[size - i - 1];
         arr[size - i - 1] = temp;
     }
-    displayArray(arr, size);
 }
